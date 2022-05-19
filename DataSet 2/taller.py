@@ -110,3 +110,27 @@ print(f'f1: {f1_score}')
 svc = SVC(gamma='auto')
 
 svc.fit(x_train, y_train)
+
+arbol = DecisionTreeClassifier()
+
+# Entreno el modelo
+arbol.fit(x_train, y_train)
+
+kfold = KFold(n_splits=10)
+
+acc_scores_train_train = []
+acc_scores_test_train = []
+# MÉTRICAS
+
+for train, test in kfold.split(x, y):
+    arbol.fit(x[train], y[train])
+    scores_train_train = arbol.score(x[train], y[train])
+    scores_test_train = arbol.score(x[test], y[test])
+    acc_scores_train_train.append(scores_train_train)
+    acc_scores_test_train.append(scores_test_train)
+    
+y_pred = arbol.predict(x_test_out)
+
+
+print('*'*50)
+print('Maquina de soporte vectorial')
