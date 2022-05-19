@@ -162,3 +162,18 @@ print(f'accuracy de Validación: {forest.score(x_test_out, y_test_out)}')
 
 # Matriz de confusión
 print(f'Matriz de confusión: {confusion_matrix(y_test_out, y_pred)}')
+
+matriz_confusion = confusion_matrix(y_test_out, y_pred)
+plt.figure(figsize = (6, 6))
+sns.heatmap(matriz_confusion)
+plt.title("Matriz de confusion Random forest")
+
+precision = precision_score(y_test_out, y_pred, average=None).mean()
+print(f'Precisión: {precision}')
+
+recall = recall_score(y_test_out, y_pred, average=None).mean()
+print(f'Re-call: {recall}')
+
+f1_score = f1_score(y_test_out, y_pred, average=None).mean()
+
+print(f'f1: {f1_score}')
