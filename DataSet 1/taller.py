@@ -32,3 +32,11 @@ data.loan.replace(['no','yes'], [0,1], inplace= True)
 data.contact.replace(['cellular','unknown','telephone'], [0,1,2], inplace= True)
 data.poutcome.replace(['unknown','failure','other','success'], [0,1,2,3], inplace= True)
 data.y.replace(['no','yes'], [0,1], inplace= True)
+
+
+rangos = [10,20,30,40,50]
+nombres = ['1','2','3','4',]
+data.age = pd.cut(data.age, rangos, labels=nombres)
+data.dropna(axis=0,how='any', inplace=True)
+
+
