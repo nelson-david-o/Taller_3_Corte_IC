@@ -106,3 +106,7 @@ print(f'Re-call: {recall}')
 f1_score = f1_score(y_test_out, y_pred, average=None).mean()
 
 print(f'f1: {f1_score}')
+
+svc = SVC(gamma='auto')
+
+svc.fit(x_train, y_train)
