@@ -56,3 +56,26 @@ logreg = LogisticRegression(solver='lbfgs', max_iter = 7600)
 
 logreg.fit(x_train,y_train)
 
+# Validacion cruzada
+
+kfold = KFold(n_splits=10)
+
+acc_scores_train_train = []
+acc_scores_test_train = []
+logreg = LogisticRegression(solver='lbfgs', max_iter = 7600)
+
+for train, test in kfold.split(x, y):
+    logreg.fit(x[train], y[train])
+    scores_train_train = logreg.score(x[train], y[train])
+    scores_test_train = logreg.score(x[test], y[test])
+    acc_scores_train_train.append(scores_train_train)
+    acc_scores_test_train.append(scores_test_train)
+    
+y_pred = logreg.predict(x_test_out)
+
+print('*'*50)
+print('Regresión Logística Validación cruzada')
+
+
+print('*'*50)
+print('Regresión Logística')
