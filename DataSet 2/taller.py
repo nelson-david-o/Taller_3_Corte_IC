@@ -214,3 +214,16 @@ for train, test in kfold.split(x, y):
     acc_scores_test_train.append(scores_test_train)
     
 y_pred = nayve.predict(x_test_out)
+
+print('*'*50)
+print('Nayve bayes Validación cruzada')
+
+# Accuracy de Entrenamiento de Entrenamiento
+print(f'accuracy de Entrenamiento de Entrenamiento: {np.array(acc_scores_train_train).mean()}')
+
+# Accuracy de Test de Entrenamiento
+print(f'accuracy de Test de Entrenamiento: {np.array(acc_scores_test_train).mean()}')
+
+# Accuracy de Validación
+print(f'accuracy de Validación: {nayve.score(x_test_out, y_test_out)}')
+
