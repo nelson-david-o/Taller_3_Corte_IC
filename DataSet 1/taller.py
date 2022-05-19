@@ -102,3 +102,14 @@ print(f'Re-call: {recall}')
 f1_score = f1_score(y_test_out, y_pred, average=None).mean()
 
 print(f'f1: {f1_score}')
+
+
+arbol = DecisionTreeClassifier()
+
+# Entreno Del modelo
+arbol.fit(x_train, y_train)
+
+kfold = KFold(n_splits=10)
+
+acc_scores_train_train = []
+acc_scores_test_train = []
