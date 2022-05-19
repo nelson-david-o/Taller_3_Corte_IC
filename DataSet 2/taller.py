@@ -10,3 +10,8 @@ import pandas as pd
 url = 'diabetes.csv'
 
 data = pd.read_csv(url)
+
+rangos = [1,5,10,15]
+nombres = ['1','2','3']
+data.Pregnancies = pd.cut(data.Pregnancies, rangos, labels=nombres)
+data.Pregnancies.replace(np.nan, 1, inplace=True)
