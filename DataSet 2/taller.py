@@ -36,3 +36,23 @@ data.BMI = pd.cut(data.BMI, rangos5, labels=nombres5)
 rangos6 = [5,10,15,20]
 nombres6 = ['1','2','3']
 data.Age = pd.cut(data.Age, rangos6, labels=nombres6)
+
+data.dropna(axis=0,how='any', inplace=True)
+
+data.drop(['SkinThickness','DiabetesPedigreeFunction'], axis= 1, inplace = True)
+
+data_train = data[:450]
+data_test = data[450:]
+
+x = np.array(data_train.drop(['Outcome'], 1))
+y = np.array(data_train.Outcome) 
+
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
+
+x_test_out = np.array(data_test.drop(['Outcome'], 1))
+y_test_out = np.array(data_test.Outcome) 
+
+logreg = LogisticRegression(solver='lbfgs', max_iter = 7600)
+
+logreg.fit(x_train,y_train)
+
