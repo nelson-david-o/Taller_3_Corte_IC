@@ -143,3 +143,21 @@ print(f'accuracy de Test de Entrenamiento: {svc.score(x_test, y_test)}')
 
 # Accuracy de Validación
 print(f'accuracy de Validación: {svc.score(x_test_out, y_test_out)}')
+
+arbol = DecisionTreeClassifier()
+
+arbol.fit(x_train, y_train)
+
+
+print('*'*50)
+print('Decisión Tree')
+
+# Accuracy de Entrenamiento de Entrenamiento
+print(f'accuracy de Entrenamiento de Entrenamiento: {arbol.score(x_train, y_train)}')
+
+# Accuracy de Test de Entrenamiento
+print(f'accuracy de Test de Entrenamiento: {arbol.score(x_test, y_test)}')
+
+# Accuracy de Validación
+print(f'accuracy de Validación: {arbol.score(x_test_out, y_test_out)}')
+
