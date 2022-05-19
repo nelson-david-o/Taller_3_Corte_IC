@@ -233,3 +233,24 @@ print(f'Re-call: {recall}')
 f1_score = f1_score(y_test_out, y_pred, average=None).mean()
 
 print(f'f1: {f1_score}')
+
+
+{}
+
+svc = SVC(gamma='auto')
+
+kfold = KFold(n_splits=10)
+
+acc_scores_train_train = []
+acc_scores_test_train = []
+
+
+for train, test in kfold.split(x, y):
+    svc.fit(x[train], y[train])
+    scores_train_train = svc.score(x[train], y[train])
+    scores_test_train = svc.score(x[test], y[test])
+    acc_scores_train_train.append(scores_train_train)
+    acc_scores_test_train.append(scores_test_train)
+    
+y_pred = svc.predict(x_test_out)
+
