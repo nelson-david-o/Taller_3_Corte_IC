@@ -122,3 +122,6 @@ for train, test in kfold.split(x, y):
     acc_scores_test_train.append(scores_test_train)
     
 y_pred = arbol.predict(x_test_out)
+
+{}
+
