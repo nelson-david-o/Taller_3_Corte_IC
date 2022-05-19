@@ -201,3 +201,35 @@ for train, test in kfold.split(x, y):
     acc_scores_test_train.append(scores_test_train)
     
 y_pred = nayve.predict(x_test_out)
+
+
+print('*'*50)
+print('Nayve bayes Validación cruzada')
+
+# Accuracy de Entrenamiento de Entrenamiento
+print(f'accuracy de Entrenamiento de Entrenamiento: {np.array(acc_scores_train_train).mean()}')
+
+# Accuracy de Test de Entrenamiento
+print(f'accuracy de Test de Entrenamiento: {np.array(acc_scores_test_train).mean()}')
+
+# Accuracy de Validación
+print(f'accuracy de Validación: {nayve.score(x_test_out, y_test_out)}')
+
+
+# Matriz de confusión
+print(f'Matriz de confusión: {confusion_matrix(y_test_out, y_pred)}')
+
+matriz_confusion = confusion_matrix(y_test_out, y_pred)
+plt.figure(figsize = (6, 6))
+sns.heatmap(matriz_confusion)
+plt.title("Matriz de confusion Nayve")
+
+precision = precision_score(y_test_out, y_pred, average=None).mean()
+print(f'Precisión: {precision}')
+
+recall = recall_score(y_test_out, y_pred, average=None).mean()
+print(f'Re-call: {recall}')
+
+f1_score = f1_score(y_test_out, y_pred, average=None).mean()
+
+print(f'f1: {f1_score}')
