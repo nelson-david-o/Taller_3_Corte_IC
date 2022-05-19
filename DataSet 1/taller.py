@@ -41,3 +41,32 @@ data.dropna(axis=0,how='any', inplace=True)
 
 
 data.drop(['job', 'marital', 'balance', 'day','month','duration','pdays'], axis= 1, inplace = True)
+
+data_train = data[:30000]
+data_test = data[30000:]
+
+x = np.array(data_train.drop(['y'], 1))
+y = np.array(data_train.y)
+
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
+
+x_test_out = np.array(data_test.drop(['y'], 1))
+y_test_out = np.array(data_test.y)
+
+
+# validacion cruzada
+
+kfold = KFold(n_splits=10)
+
+acc_scores_train_train = []
+acc_scores_test_train = []
+logreg = LogisticRegression(solver='lbfgs', max_iter = 7600)
+
+for train, test in kfold.split(x, y):
+    logreg.fit(x[train], y[train])
+    scores_train_train = logreg.score(x[train], y[train])
+    scores_test_train = logreg.score(x[test], y[test])
+    acc_scores_train_train.append(scores_train_train)
+    acc_scores_test_train.append(scores_test_train)
+    
+y_pred = logreg.predict(x_test_out)
