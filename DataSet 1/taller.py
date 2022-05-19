@@ -40,3 +40,4 @@ data.age = pd.cut(data.age, rangos, labels=nombres)
 data.dropna(axis=0,how='any', inplace=True)
 
 
+data.drop(['job', 'marital', 'balance', 'day','month','duration','pdays'], axis= 1, inplace = True)
