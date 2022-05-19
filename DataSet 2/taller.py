@@ -161,3 +161,19 @@ print(f'accuracy de Test de Entrenamiento: {arbol.score(x_test, y_test)}')
 # Accuracy de Validación
 print(f'accuracy de Validación: {arbol.score(x_test_out, y_test_out)}')
 
+forest = RandomForestClassifier()
+
+forest.fit(x_train, y_train)
+
+print('*'*50)
+print('RANDOM FOREST')
+
+# Accuracy de Entrenamiento de Entrenamiento
+print(f'accuracy de Entrenamiento de Entrenamiento: {forest.score(x_train, y_train)}')
+
+# Accuracy de Test de Entrenamiento
+print(f'accuracy de Test de Entrenamiento: {forest.score(x_test, y_test)}')
+
+# Accuracy de Validación
+print(f'accuracy de Validación: {forest.score(x_test_out, y_test_out)}')
+
