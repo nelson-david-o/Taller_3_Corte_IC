@@ -177,3 +177,27 @@ print(f'Re-call: {recall}')
 f1_score = f1_score(y_test_out, y_pred, average=None).mean()
 
 print(f'f1: {f1_score}')
+
+# Nuevo modelo
+
+nayve = GaussianNB()
+
+# Entreno el modelo
+nayve.fit(x_train, y_train)
+
+# MÉTRICAS
+
+kfold = KFold(n_splits=10)
+
+acc_scores_train_train = []
+acc_scores_test_train = []
+# MÉTRICAS
+
+for train, test in kfold.split(x, y):
+    nayve.fit(x[train], y[train])
+    scores_train_train = nayve.score(x[train], y[train])
+    scores_test_train = nayve.score(x[test], y[test])
+    acc_scores_train_train.append(scores_train_train)
+    acc_scores_test_train.append(scores_test_train)
+    
+y_pred = nayve.predict(x_test_out)
