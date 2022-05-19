@@ -125,3 +125,24 @@ y_pred = arbol.predict(x_test_out)
 
 {}
 
+forest = RandomForestClassifier()
+
+# Entreno el modelo
+forest.fit(x_train, y_train)
+
+# MÉTRICAS
+
+kfold = KFold(n_splits=10)
+
+acc_scores_train_train = []
+acc_scores_test_train = []
+# MÉTRICAS
+
+for train, test in kfold.split(x, y):
+    forest.fit(x[train], y[train])
+    scores_train_train = forest.score(x[train], y[train])
+    scores_test_train = forest.score(x[test], y[test])
+    acc_scores_train_train.append(scores_train_train)
+    acc_scores_test_train.append(scores_test_train)
+    
+y_pred = forest.predict(x_test_out)
